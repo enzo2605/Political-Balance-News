@@ -136,7 +136,6 @@ class Homepage1 extends State<Homepage> {
                     
                     q=value;
                     stc2.add(q);
-                    //q=null;
                     _textController.clear();
                     
                   },

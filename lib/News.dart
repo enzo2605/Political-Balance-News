@@ -15,11 +15,11 @@ class News
     if(l==null){l="it";}
     if(q!=null){
       print('SONO Q DALL if $q');
-    url = "https://newsapi.org/v2/everything?q=$q&language=$l&sortBy=publishedAt&apiKey=5acb1de38bc04f1a9a04013015471ee5";
+    url = "https://newsapi.org/v2/everything?q=$q&language=$l&sortBy=publishedAt&apiKey=7fd0d4f7abc9467eb3b977047b7c8388";
     }
     if(q==null||q==""){
       print ('SONO Q DALL ELSE $q');
-     url = "https://newsapi.org/v2/top-headlines?category=$c&country=it&pagesize=100&apiKey=5acb1de38bc04f1a9a04013015471ee5";}
+     url = "https://newsapi.org/v2/top-headlines?category=$c&country=it&pagesize=100&apiKey=7fd0d4f7abc9467eb3b977047b7c8388";}
     
     print('Sono A $a');
     var response = await http.get(url);
