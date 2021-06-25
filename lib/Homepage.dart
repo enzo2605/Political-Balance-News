@@ -8,10 +8,13 @@ import 'package:political_balance_news/News.dart';
 import 'News.dart';
 import 'Animazione.dart';
 import 'Temi.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 
 
  StreamController<String> stc = StreamController<String>.broadcast();
+
+ 
 
 class Homepage extends StatefulWidget {
   
@@ -30,10 +33,12 @@ class Homepage1 extends State<Homepage> {
    FocusNode myFocusNode;
   
 
-
+    String a=null;
     String c=null;
     String l=null;
     String q=null;
+    
+     int toggle = 2;
 
 
 
@@ -44,22 +49,16 @@ class Homepage1 extends State<Homepage> {
     categorie = getCat();
     
     
-    getNews(c,l,q);
+    getNews(c,l,q,a);
+
      
 
-    widget.stream.listen((tipo1) {Stato(); getNews(tipo1,l,q); });
-    widget.stream.listen((q) {Stato(); getNews("",l,q); });
+    widget.stream.listen((tipo1) {Stato(); getNews(tipo1,l,q,a); });
+    widget.stream.listen((q) {Stato(); getNews("",l,q,a); });
+    widget.stream.listen((a) {Stato();getNews(c, l, q, a);});
   }
 
 
-
-    void dispose() 
-    {
-    
-    myFocusNode.dispose();
-
-    super.dispose();
-    }
 
   
   
@@ -70,15 +69,21 @@ class Homepage1 extends State<Homepage> {
     });
   }
 
-  getNews(c,l,q) async {
+
+  
+
+
+  getNews(c,l,q,a) async {
     News NuovaNews = News();
-    await NuovaNews.getNews(c,l,q);
+    await NuovaNews.getNews(c,l,q,a);
     articles = NuovaNews.news;
     setState(() {
       loading = false;
     });
-
   }
+
+
+
 
   void _openEndDrawer() {
     _scaffoldKey.currentState.openEndDrawer();
@@ -196,11 +201,7 @@ class Homepage1 extends State<Homepage> {
             ),
             child: Text(
               'Political Balance News',
-              style: Theme.of(context).textTheme.headline1 //TextStyle(
-                //color: Colors.white,
-                //fontSize: 24,
-                //color: Theme.of(context).copyWith()
-              //),
+              style: Theme.of(context).textTheme.headline1 
             ),
           )),
 
@@ -263,7 +264,25 @@ class Homepage1 extends State<Homepage> {
 
 
           : Stack(children: <Widget>[
+            
 
+            Container(
+            
+              alignment: Alignment.topCenter,
+              child: ToggleSwitch(
+            initialLabelIndex: toggle,
+            totalSwitches: 4,
+            inactiveBgColor: Theme.of(context).primaryColor,
+            activeBgColor: [Theme.of(context).accentColor],
+            inactiveFgColor: Theme.of(context).accentColor,
+            labels: ['Sinistra', 'Centro','Tutto', 'Destra'],
+            onToggle: (index) {
+
+            toggle = index;
+            stc.add(index.toString());
+
+          },
+          ),),
 
 
 
@@ -274,7 +293,7 @@ class Homepage1 extends State<Homepage> {
              Container
               (
               
-               margin: EdgeInsets.only(top: 50),
+               margin: EdgeInsets.only(top: 40),
                 child: Column
                 (
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -316,7 +335,7 @@ class Homepage1 extends State<Homepage> {
             //-----------------------ARTICLEVIEW-------------------------------------//
 
               Padding(
-                  padding: EdgeInsets.only(left: 15,right: 15,top: 30,bottom: 50),
+                  padding: EdgeInsets.only(left: 15,right: 15,top: 50,bottom: 50),
                   
                   child: Container(
                     margin: EdgeInsets.only(bottom: 50),

@@ -1,15 +1,12 @@
-
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'Homepage.dart';
-import 'News.dart';
 
 class Categorie extends StatelessWidget
 {
   final immagine,nome,tipo1;
+  
   Categorie({this.immagine,this.nome,this.tipo1});
    @override
   Widget build(BuildContext context) {
@@ -24,6 +21,9 @@ class Categorie extends StatelessWidget
           currentFocus.unfocus();
         }
         stc.add(tipo1);
+        
+        
+        
         
         
       },
