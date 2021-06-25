@@ -80,7 +80,10 @@ checkValue() async
       {
         if (val==index)
         {
-          check1[index]=true;
+          setState(() 
+          {
+            check1[index]=true;
+          });
         }
       }
       
@@ -93,7 +96,7 @@ checkValue() async
    {
 
      
-    checkValue();
+    
       
      return Scaffold
      (
@@ -223,43 +226,34 @@ checkValue() async
         
         child: Column
         (
+
+          
           children: <Widget>
           [ 
-
-
             //-------------- PRIMO TEMA--------------//
             SwitchListTile
           (
             title: Text("Tema Rosa e Blu",style: Theme.of(context).textTheme.headline4),
             value: check1[0], 
+            activeColor: Colors.green.shade400,
             
 
             onChanged: (bool value)
             {
               
               setState(() {
-              check1[0] = value;        // SET PER LO SWITCH
+              check1[0] = value;          // SET PER LO SWITCH
               });
 
-              cambi=true;              // serve per il main nel tema 
-              gest_bool(0, check1);    // sett gli altri switch ad off
-              _writeData('0');         // Scrive nel file relativo che indice di tema
-              st.add(0);               // Aggiunge l'indice allo stream del main
+              cambi=true;                 // serve per il main nel tema 
+              gest_bool(0, check1);       // sett gli altri switch ad off
+              _writeData('0');            // Scrive nel file relativo che indice di tema
+              st.add(0);                  // Aggiunge l'indice allo stream del main
 
 
-  
-              //-----------Semplice SnackBar-----------//
-              // ignore: deprecated_member_use
-              chiave.currentState.showSnackBar
-              (
-                SnackBar
-                (
-                  backgroundColor: Theme.of(context).accentColor,         // Da rimpiazzare con funzione ancora non so come
-                  content: Text("Tema cambiato !"),
-                )
-                
-              );
-              //-----------Semplice SnackBar-----------//
+              snacks().snack(context);    //SNACKBAR  
+              
+              
 
 
             },
@@ -272,6 +266,7 @@ checkValue() async
           (
             title:  Text("Tema Bianco e Nero",style: Theme.of(context).textTheme.headline4),
             value: check1[1], 
+            activeColor: Colors.green.shade400,
             
 
             onChanged: (bool value)
@@ -288,17 +283,19 @@ checkValue() async
               st.add(1);                  // Aggiunge l'indice allo stream del main
 
 
-
+              snacks().snack(context);    //SNACKBAR
 
 
             }),
               //-------------- SECONDO TEMA--------------//
 
+
+             //-------------- TERZO TEMA--------------//
           SwitchListTile
           (
             title:  Text("Tema Nero e Senape",style: Theme.of(context).textTheme.headline4),
             value: check1[2], 
-            
+            activeColor: Colors.green.shade400,
 
             onChanged: (bool value)
             {
@@ -314,10 +311,12 @@ checkValue() async
               st.add(2);                  // Aggiunge l'indice allo stream del main
 
 
-
+            snacks().snack(context);      //SNACKBAR
 
 
             }),
+
+            //-------------- TERZO TEMA--------------//
 
           
 
@@ -334,3 +333,18 @@ checkValue() async
    }
 }
 
+ 
+class snacks
+{
+  
+  Widget snack(BuildContext context)
+  {
+    final snack = SnackBar(
+    content: Text("Tema cambiato !"),                               //WIDGET PER FARE IL DISPLAY DELLA SNACK BAR PER IL CAMBIO DI TEMA
+    backgroundColor: Colors.black,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snack);
+            
+  }
+
+}

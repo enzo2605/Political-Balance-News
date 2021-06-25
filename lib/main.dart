@@ -98,7 +98,7 @@ class main_app extends StatelessWidget {
        y  = await _readData();
        cambi=true;
        st.add(y);
-      print("VALORE Y $y");
+      
     }
   }
   
