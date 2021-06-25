@@ -12,7 +12,9 @@ import 'package:toggle_switch/toggle_switch.dart';
 
 
 
- StreamController<String> stc = StreamController<String>.broadcast();
+ StreamController<String> stc1 = StreamController<String>.broadcast();
+ StreamController<String> stc2 = StreamController<String>.broadcast();
+ StreamController<String> stc3 = StreamController<String>.broadcast();
 
  
 
@@ -20,7 +22,9 @@ class Homepage extends StatefulWidget {
   
 
   Homepage1 createState() => Homepage1();
-  final Stream<String> stream =stc.stream;
+  final Stream<String> stream1 =stc1.stream;
+  final Stream<String> stream2 =stc2.stream;
+  final Stream<String> stream3 =stc3.stream;
 }
 
 class Homepage1 extends State<Homepage> {
@@ -53,9 +57,9 @@ class Homepage1 extends State<Homepage> {
 
      
 
-    widget.stream.listen((tipo1) {Stato(); getNews(tipo1,l,q,a); });
-    widget.stream.listen((q) {Stato(); getNews("",l,q,a); });
-    widget.stream.listen((a) {Stato();getNews(c, l, q, a);});
+    widget.stream1.listen((tipo1) {Stato(); getNews(tipo1,l,q,a); });
+    widget.stream2.listen((q) {Stato(); getNews("",l,q,a); });
+    widget.stream3.listen((a) {Stato();getNews(c, l, q, a);});
   }
 
 
@@ -130,8 +134,7 @@ class Homepage1 extends State<Homepage> {
                   onSubmitted: (String value)
                   {
                     q=value;
-                    stc.add(q);
-                    print(q);
+                    stc2.add(q);
                     q=null;
                     
                   },
@@ -279,7 +282,9 @@ class Homepage1 extends State<Homepage> {
             onToggle: (index) {
 
             toggle = index;
-            stc.add(index.toString());
+            print('Sono index $index.toString()');
+            a=index.toString();
+            stc3.add(a);
 
           },
           ),),

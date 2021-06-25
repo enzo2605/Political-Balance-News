@@ -11,15 +11,17 @@ class News
   {
     String url;
     var name, source;
-    print(a);
     if(c==null){c="general";}
     if(l==null){l="it";}
-    if(q!=null)
-    url = "https://newsapi.org/v2/everything?q=$q&language=$l&sortBy=publishedAt&apiKey=64eb13ebbadb49cb98aa7847ebb4b4e7";
-
-    else
-     url = "https://newsapi.org/v2/top-headlines?category=$c&country=it&pagesize=100&apiKey=64eb13ebbadb49cb98aa7847ebb4b4e7";
+    if(q!=null){
+      print('SONO Q DALL if $q');
+    url = "https://newsapi.org/v2/everything?q=$q&language=$l&sortBy=publishedAt&apiKey=5acb1de38bc04f1a9a04013015471ee5";
+    }
+    if(q==null){
+      print ('SONO Q DALL ELSE $q');
+     url = "https://newsapi.org/v2/top-headlines?category=$c&country=it&pagesize=100&apiKey=5acb1de38bc04f1a9a04013015471ee5";}
     
+    print('Sono A $a');
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
     print(jsonData['status']);
@@ -82,6 +84,7 @@ class News
 
           if(a!='3'&&a!='1'&&a!='0')
           {
+            print('A PER LA SECONDA VOLTA $a');
             ArticleModel articleModel = ArticleModel(
             
               title: element["title"],

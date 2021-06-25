@@ -20,7 +20,8 @@ class Categorie extends StatelessWidget
         if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
         }
-        stc.add(tipo1);
+        stc1.add(tipo1);
+
         
         
         

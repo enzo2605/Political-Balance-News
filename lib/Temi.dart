@@ -33,7 +33,6 @@ import 'package:path_provider/path_provider.dart';
     
     final _myFile = File('$_dirPath/data.txt');
     await _myFile.writeAsString(x);
-    print(_dirPath);
   }
 
 void gest_bool(int i,var x)
@@ -227,7 +226,7 @@ checkValue() async
         child: Column
         (
 
-          
+
           children: <Widget>
           [ 
             //-------------- PRIMO TEMA--------------//
