@@ -133,9 +133,11 @@ class Homepage1 extends State<Homepage> {
                   backgroundColor: Colors.white,
                   onSubmitted: (String value)
                   {
+                    
                     q=value;
                     stc2.add(q);
-                    q=null;
+                    //q=null;
+                    _textController.clear();
                     
                   },
                 )
@@ -280,7 +282,7 @@ class Homepage1 extends State<Homepage> {
             inactiveFgColor: Theme.of(context).accentColor,
             labels: ['Sinistra', 'Centro','Tutto', 'Destra'],
             onToggle: (index) {
-
+             
             toggle = index;
             print('Sono index $index.toString()');
             a=index.toString();

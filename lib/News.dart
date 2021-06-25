@@ -17,7 +17,7 @@ class News
       print('SONO Q DALL if $q');
     url = "https://newsapi.org/v2/everything?q=$q&language=$l&sortBy=publishedAt&apiKey=5acb1de38bc04f1a9a04013015471ee5";
     }
-    if(q==null){
+    if(q==null||q==""){
       print ('SONO Q DALL ELSE $q');
      url = "https://newsapi.org/v2/top-headlines?category=$c&country=it&pagesize=100&apiKey=5acb1de38bc04f1a9a04013015471ee5";}
     
