@@ -25,12 +25,11 @@ dependencies:
     sdk: flutter
   http: ^0.12.0+2
   webview_flutter: ^2.0.8
-  cached_network_image: ^2.0.0
-  flutter_bloc: ^6.1.1
   equatable: ^1.2.5
   animations: ^1.1.2
   path_provider: ^1.6.27
   toggle_switch: ^1.2.0
+  
 
     
     
@@ -69,6 +68,15 @@ flutter:
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
+
+
+  fonts:
+    - family: ShipporiMincho
+      fonts:
+        - asset: fontdata/ShipporiMincho-Regular.ttf
+    - family : Newsreader-Regular
+      fonts:
+        - asset: Newsreader-Regular.ttf    
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

@@ -34,7 +34,7 @@ class Pagina_caricamento extends State<Pci> {
     
   
     return Scaffold(
-      backgroundColor: Color.fromRGBO(67, 67, 67,1),
+      backgroundColor: Color.fromRGBO(17,75,95,1),
       body: Stack
       (
         children: <Widget>

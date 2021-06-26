@@ -14,14 +14,11 @@ class News
     if(c==null){c="general";}
     if(l==null){l="it";}
     if(q!=null){
-      print('SONO Q DALL if $q');
     url = "https://newsapi.org/v2/everything?q=$q&language=$l&sortBy=publishedAt&apiKey=7fd0d4f7abc9467eb3b977047b7c8388";
     }
     if(q==null||q==""){
-      print ('SONO Q DALL ELSE $q');
      url = "https://newsapi.org/v2/top-headlines?category=$c&country=it&pagesize=100&apiKey=7fd0d4f7abc9467eb3b977047b7c8388";}
     
-    print('Sono A $a');
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
     print(jsonData['status']);
@@ -120,7 +117,7 @@ class News
 
 var giornali_sx = ['Ilfattoquotidiano.it','Huffingtonpost.it','Ilpost.it','Today.it','La Repubblica','Open.online','Ilmattino.it','Ilgiorno.it','ilmanifesto.it','Fanpage.it'];
 var giornali_dx = ['Virgilio.it','ilmeteo.it','Lanazione.it','Tgcom.it','Liberoquotidiano.it','Libero.it','ilgiornale.it','Mediaset.it','Ilrestodelcarlino.it','iltempo.it','secoloditalia.it'];
-var giornali_centro = ['ANSA.it','Ilmessaggero.it','Corriere.it','Il Sole 24 Ore','Inews24.it','Adnkronos.com','Tg24.sky.it'];
+var giornali_centro = ['ANSA.it','Ilmessaggero.it','Corriere.it','Il Sole 24 Ore','Inews24.it','Adnkronos.com','Tg24.sky.it','Rainews.it'];
 
 
 class ArticleModel

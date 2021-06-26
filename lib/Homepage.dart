@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:political_balance_news/Categorie.dart';
 import 'package:political_balance_news/Data.dart';
 import 'package:political_balance_news/News.dart';
+import 'package:political_balance_news/info.dart';
 import 'News.dart';
 import 'Animazione.dart';
 import 'Temi.dart';
@@ -29,12 +30,10 @@ class Homepage extends StatefulWidget {
 
 class Homepage1 extends State<Homepage> {
  static List<ArticleModel> articles = [];
-  // ignore: deprecated_member_use
   List<CatMod> categorie = [];
   static bool loading = true;
   final GlobalKey<ScaffoldState> _scaffoldKey= GlobalKey<ScaffoldState>();
   TextEditingController _textController;
-   FocusNode myFocusNode;
   
 
     String a=null;
@@ -61,8 +60,6 @@ class Homepage1 extends State<Homepage> {
     widget.stream2.listen((q) {Stato(); getNews("",l,q,a); });
     widget.stream3.listen((a) {Stato();getNews(c, l, q, a);});
   }
-
-
 
   
   
@@ -157,11 +154,10 @@ class Homepage1 extends State<Homepage> {
                 iconSize: 35,
                 onPressed: ()
                 {
+                  
                   FocusScopeNode currentFocus = FocusScope.of(context);
-
-                  if (!currentFocus.hasPrimaryFocus) {
                    currentFocus.unfocus();
-                  }
+                  
                   _openEndDrawer();
                 } ,
 
@@ -212,29 +208,23 @@ class Homepage1 extends State<Homepage> {
 
         ListTile
         (
-          leading: Icon(Icons.message,color: Colors.white),
-          title: Text('Messages',style: TextStyle(color: Colors.white),),
+          leading: Icon(Icons.info,color: Theme.of(context).primaryColor),
+          title: Text('Informazioni app',style: TextStyle(color: Theme.of(context).primaryColor),),
           onTap: ()
           {
-            
+            Navigator.push
+            (
+              context,
+              MaterialPageRoute(builder: (context)=>informazioni()) 
+            );
           },
           
         ),
 
         ListTile
         (
-          leading: Icon(Icons.account_circle,color: Colors.white),
-          title: Text('Profile',style: TextStyle(color: Colors.white)),
-          onTap: ()
-          {
-            
-          },
-        ),
-
-        ListTile
-        (
-          leading: Icon(Icons.settings,color: Colors.white,),
-          title: Text('Temi',style: TextStyle(color: Colors.white)),
+          leading: Icon(Icons.settings,color: Theme.of(context).primaryColor),
+          title: Text('Temi',style: TextStyle(color: Theme.of(context).primaryColor)),
           onTap: ()
           {
             

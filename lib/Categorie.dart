@@ -46,7 +46,7 @@ class Categorie extends StatelessWidget
                 padding: EdgeInsets.all(10),
                 
                  child: 
-                    Chip(label: Text(nome),labelStyle: TextStyle(color: Theme.of(context).primaryColor),)
+                    Chip(label: Text(nome),labelStyle: TextStyle(color: Theme.of(context).primaryColor,fontFamily: 'Newsreader' ,))
                     
               ),
 
