@@ -307,7 +307,6 @@ class Homepage1 extends State<Homepage> {
                         {
                           return Categorie
                           (
-                            immagine: categorie[index].urlimm,
                             nome: categorie[index].nomecat,
                             tipo1: categorie[index].tipo,
                             

@@ -1,38 +1,33 @@
+//CLASSE CHE PERMETTE DI VISUALIZZARE LE CATEGORIE
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'Homepage.dart';
 
 class Categorie extends StatelessWidget
 {
-  final immagine,nome,tipo1;
+  final nome,tipo1;
   
-  Categorie({this.immagine,this.nome,this.tipo1});
+  Categorie({this.nome,this.tipo1});        // SONO RICHESTI I SEGUENTI PARAMETRI
    @override
   Widget build(BuildContext context) {
     
-    return InkWell
+    return InkWell                                        // PER INCLUDERE PICCOLA ANIMAZIONE AL TOCCO
     (
       onTap : ()
       {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-
+        FocusScopeNode currentFocus = FocusScope.of(context);       //LE RIGHE DI CODICE RIGUARDANTE IL FOCUS VENGONO UTILIZZATE
+                                                                    // PER NON PERMETTERE AL CUPERTINOSEARCHTEXTFIELD(E' IN HOMEPAGE) DI CONTINUARE AD AVERE IL FOCUS
         if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
         }
-        stc1.add(tipo1);
-
-        
-        
-        
-        
+        stc1.add(tipo1);                                             // AL TOCCO COMUNICA AD UNO DEI TRE STREAM DELL'HOMEPAGE CHE E' ARRIVATO IL VALORE TIPO
+                                                                     // DA UTILIZZARE CON LE API PER LA RICERCA DI UNA SPECIFICA CATEGORIA
         
       },
       
-   
 
-
-
+      //-----------------------PARTE GRAFICA RIGUARDANTE LA CATEGORIA-----------------------------//
 
       child: Stack
       (
@@ -49,12 +44,15 @@ class Categorie extends StatelessWidget
                     Chip(label: Text(nome),labelStyle: TextStyle(color: Theme.of(context).primaryColor,fontFamily: 'Newsreader' ,))
                     
               ),
-
-          
-          
         ]
       ),
-      
+
+      //-----------------------PARTE GRAFICA RIGUARDANTE LA CATEGORIA-----------------------------//
+
+
+
+
+
     ) ;
   }
 
@@ -65,7 +63,6 @@ class Categorie extends StatelessWidget
 
 class CatMod
 {
-  String nomecat;
-  String urlimm;
+  String nomecat;                    // UTILIZZATO NEL FILE DATA.DART AI FINI DI IDENTIFICARE NOME E TIPO
   String tipo;
 }

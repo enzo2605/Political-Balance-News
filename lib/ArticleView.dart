@@ -1,5 +1,8 @@
-import 'dart:async';
+/*CLASSE CHE CONSENYE LA VISIONE DELL'ARTICOLO*/
 
+
+
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -22,7 +25,7 @@ class Vs extends State<ArticleView>
       child: WebView(
 
         initialUrl: widget.artUrl,
-        onWebViewCreated: ((WebViewController webViewController)
+        onWebViewCreated: ((WebViewController webViewController)                  //ESSENZIALMENTE APRE IL BROWSER DALL'APP
         {
           completer.complete(webViewController);
         }),
