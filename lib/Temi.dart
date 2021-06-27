@@ -1,8 +1,10 @@
+/* FILE CHE PERMETTE IL DISPLAY DI UNA PAGINA IL CUI CONTENUTO E' UN FAC SIMILE DELLA PAGINA HOME PAGE ALLO SCOPO DI ANTEPRIMA DI UN TEMA 
+LA STESSA INOLTRE PERMETTE IL CAMBIO DI TEMA CHE VIENE VISUALIZZATO IMMEDIATAMENTE, IL TUTTO E' RESO POSSIBILE GRAZIE A LETTURA E SCRITTURA DA FILE */
+
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'ListaTemi.dart';
 import 'main.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
@@ -10,7 +12,7 @@ import 'package:path_provider/path_provider.dart';
 
 
   Future<String> _getDirPath() async {
-    final _dir = await getApplicationDocumentsDirectory();
+    final _dir = await getApplicationDocumentsDirectory();                // FACENTE PARTE DELLA LIBRERIA PATH-PROVIDER SERVE PER IDENTIFICARE IL PATH DEL FILE CREATO
     return _dir.path;
   }
 
@@ -20,8 +22,8 @@ import 'package:path_provider/path_provider.dart';
   Future<int> _readData() async {
     final _dirPath = await _getDirPath();
     final _myFile = File('$_dirPath/data.txt');
-    final _data = await _myFile.readAsString(encoding: utf8);
-    return int.parse(_data);
+    final _data = await _myFile.readAsString(encoding: utf8);            // LEGGE I DATI DA FILE E' UNA FUNZIONA ASINCRONA PER IL RECUPERO DEL PATH
+    return int.parse(_data);                                             // SERVE CHE MI RITORNI L'INTERO SCRITTO ALL' INTERNO PER LA FUNZIONE CHECKVALUE
   }
 
 
@@ -31,14 +33,14 @@ import 'package:path_provider/path_provider.dart';
   Future<void> _writeData(String x) async {
     final _dirPath = await _getDirPath();
     
-    final _myFile = File('$_dirPath/data.txt');
+    final _myFile = File('$_dirPath/data.txt');                          // FUNZIONA IDENTICAMENTE AD _READDATA MA ANZICHE' LEGGERE, SCRIVE 
     await _myFile.writeAsString(x);
   }
 
 void gest_bool(int i,var x)
 {
   x[i]=true;
-  for(int k = 0; k < x.length; k++ )
+  for(int k = 0; k < x.length; k++ )                                     // FUNZIONE CHE PERMETTE DI GESTIRE IL VALORE BOOLEANO DEGLI SWITCH IN MODO DA RENDERLI ESCLUSIVI
   {
     if(i!=k){
     x[k]=false;
@@ -70,13 +72,14 @@ class temi extends State<tema>
     
     
 
-var check1 = [false,false,false,];
+var check1 = [false,false,false,];                                                   // BOOL DI CIASCUNO SWITCH, USATO ALL'INTERNO DI CHECKVALUE
 checkValue() async 
     {
       
       final val = await _readData();
-      for(int index = 0 ; index < check1.length ; index ++ )
-      {
+      for(int index = 0 ; index < check1.length ; index ++ )                         // LA FUNZIONE CHECK VALUE PERMETTE DI TENERE L'ULTIMO SWITCH SELEZIONATO 
+                                                                                     // ATTIVO ANCHE QUANDO SI CHIUDE LA PAGINA TEMI 
+      {                                                                              // AL FINE DI RICORDARE QUALE TEMA SI è SELEZIONATO
         if (val==index)
         {
           setState(() 
@@ -94,8 +97,6 @@ checkValue() async
    Widget build(BuildContext) 
    {
 
-     
-    
       
      return Scaffold
      (
@@ -103,12 +104,12 @@ checkValue() async
        key: chiave,
        appBar:  AppBar
         (
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.transparent,                    
         elevation: 0.0,
         leading: IconButton
         (
           icon: Icon(Icons.arrow_back),
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).accentColor,                       //ICONA IN ALTO A SINISTRA PER TORNARE INDIETRO TRA LE PAGINE
           onPressed: ()
           {
             
@@ -123,17 +124,12 @@ checkValue() async
        body: Column
        (
 
-         
-
-
-
-
         children: <Widget>
         [
 
 
            Padding(
-                  padding: EdgeInsets.only(left: 15,right: 15,top: 0,bottom: 20),
+                  padding: EdgeInsets.only(left: 15,right: 15,top: 0,bottom: 20),                               //UN FAC SIMILE DI QUELLO CHE E' LA HOMEPAGE
                   
                   child: Container(
                     margin: EdgeInsets.only(bottom: 1),
@@ -153,11 +149,11 @@ checkValue() async
                                 [
                                 ClipRRect
                                 (
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(15),                // MOSTRO UN IMMAGINE BASILARE 
                                   child: Image.network("https://media.istockphoto.com/photos/newspaper-front-page-reads-big-news-with-smiling-man-visual-picture-id579766456",width: 200,height: 200,)),
                                 Text
                                 (
-                                  "Incredibile Notizia, cambio di tema !",
+                                  "Incredibile Notizia, cambio di tema !",                // TITOLO BASILARE PER ESEMPIO
                                   style: Theme.of(context).textTheme.headline6
                                 ),
                                 SizedBox
@@ -166,7 +162,7 @@ checkValue() async
                                 ),
                                 Text
                                 (
-                                  "Sembra che il nostro utente abbia performato un cambio di tema !",
+                                  "Sembra che il nostro utente abbia performato un cambio di tema !",               // DESCRIZIONE BASILARE PER ESEMPIO
                                   style: Theme.of(context).textTheme.bodyText2
                                 ),
                                   Card(margin: EdgeInsets.only(bottom: 15)),

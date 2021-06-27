@@ -1,18 +1,18 @@
+// FUNZIONE PER OTTENERE LE CATEGORIE UTILIZZO TIPO PER RAGIONI API DI NEWSAPI E NOME PER FARE UN DISPLAY CON PRIMA LETTERA MAIUSCOLA ED IN ITALIANO
+
+
 import 'package:political_balance_news/Categorie.dart';
 
-List<CatMod> getCat()
+List<CatMod> getCat()                                             // FUNZIONE CHE RITORNA LA LISTA
 {
-   List <CatMod> cat = [];
-   CatMod catm =new CatMod();
+   List <CatMod> cat = [];                                        //DICHIARAZIONI E IN SEGUITO ASSEGNAZIONI
+   CatMod catm =new CatMod();                                     //CATMOD E' PRESENTE NEL FILE CATEGORIE.DART
 
-    catm.nomecat = "Generale";
+    catm.nomecat = "Generale";                                  
     catm.tipo= "general";
 
-    cat.add(catm);
-    catm = new CatMod();
-
-
-
+    cat.add(catm);                                                //  AGGIUNGO  CATM ( ALIAS DI CATEGORY MODEL ) IN  CAT ( ALIAS DI CATEGORIE ) 
+    catm = new CatMod();                              
 
 
    catm.nomecat = "Business";
@@ -58,7 +58,7 @@ List<CatMod> getCat()
    cat.add(catm);
    catm = new CatMod();
 
-  return cat;
+  return cat;                             // RITORNO LA LISTA
 
 
 }

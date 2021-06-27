@@ -1,5 +1,7 @@
- import 'dart:async';
+// E' UNA PAGINA FITTIZIA DI CARICAMENTO PERMETTE DI FAR CAPIRE ALL'UTENTE QUALE APP HA APERTO, E NASCONDERE 
+//IL CAMBIO IMPROVVISO DI TEMA NEL MOMENTO IN CUI LEGGE DA FILE 
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'Homepage.dart';
 
@@ -12,20 +14,12 @@ class Pci extends StatefulWidget {
 
 class Pagina_caricamento extends State<Pci> {
   @override
-  static bool load = true;
 
-  void Stato1() async
-  {
-    setState(() {
-      load = false;
-    });
-  }
 
 
     void initState() 
     {
     super.initState();
-    Stato1();
     }
 
   Widget build(BuildContext context) 
@@ -34,7 +28,7 @@ class Pagina_caricamento extends State<Pci> {
     
   
     return Scaffold(
-      backgroundColor: Color.fromRGBO(17,75,95,1),
+      backgroundColor: Color.fromRGBO(255,255,255,1),
       body: Stack
       (
         children: <Widget>
@@ -42,19 +36,19 @@ class Pagina_caricamento extends State<Pci> {
         Align(
             alignment: Alignment(0.0, 0.0),
             child: Image.asset('images/weight_scale_black_bg.png',fit: BoxFit.cover,)),
-        Align(
+        Align(                                                                                          // PURAMENTE GRAFICA
           alignment: Alignment(0.0, 0.3),
           child: Text(
             "Political Balance news",
             textDirection: TextDirection.ltr,
-            style: TextStyle(decoration:TextDecoration.none ,fontSize: 25, fontStyle: FontStyle.italic,color: Colors.white),
+            style: Theme.of(context).textTheme.headline1,
           ),
         ),
     Container(
             child: new Directionality
               (
               textDirection: TextDirection.ltr,
-              child: futuro().futuro1(context),
+              child: futuro().futuro1(context),                                                     // TIMER DI 3 SECONDI PER POI PASSARE ALL'HOMEPAGE
               
             )
               )
@@ -85,17 +79,13 @@ class futuro
             (
               context,
               MaterialPageRoute
-              (
-                builder: (context) => Homepage()
+              (   
+                builder: (context) => Homepage()                                      // TIMER DI 3 SECONDI PER POI PASSARE ALL'HOMEPAGE
               ),
               (route) => false
             );
       }
             );
-            
-            
-            
-            
             return Container(width: 0.0,height: 0.0,);
             }
 

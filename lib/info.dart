@@ -1,6 +1,7 @@
+//PAGINA PER IL DISPLAY DI INFO FATTA SOLO DI PARTI GRAFICHE E' PRESENTE UN TITOLO UN IMMAGINE E UNA DESCRIZIONE
+
+
 import 'package:flutter/material.dart';
-
-
 class informazioni extends StatefulWidget {
 
   @override
@@ -68,14 +69,13 @@ class info extends State<informazioni> {
                         
                         text: "L' applicazione Political Balance news riprende comportamenti d'oltre oceano e d'oltre manica per la classificazione dello spettro politico dei giornali, lo scopo dunque è indirizzato nell' instaurare nel lettore una giusta distinzione e apertura mentale per quanto concerne al ragionamento di diversi articoli riguardanti lo stesso argomento ",
                         style: Theme.of(context).textTheme.bodyText2
-                        //TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Theme.of(context).accentColor),
 
                       ),
-
 
                     )),
                     
                   ]
+                  
       )
 
     ));

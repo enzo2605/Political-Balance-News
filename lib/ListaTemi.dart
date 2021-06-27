@@ -1,6 +1,6 @@
+//SEMPLICEMENTE UNA LISTA DI TEMI 
+
 import 'package:flutter/material.dart';
-
-
 
 // LEGENDA 
 
@@ -31,7 +31,7 @@ ThemeData get_themes(int index)
         headline1: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold,color: Color.fromRGBO(13,18,57,1),fontFamily: 'ShipporiMincho'),
         headline6: TextStyle(fontSize: 20.0, color: Colors.white,fontFamily: 'ShipporiMincho',fontWeight: FontWeight.bold),
         headline4: TextStyle(fontSize: 22.0, color: Colors.white,fontWeight: FontWeight.bold),
-        bodyText2: TextStyle(fontSize: 15.0, fontFamily: 'Newsreader-Regular',color: Colors.white)),
+        bodyText2: TextStyle(fontSize: 15.0, fontFamily: 'Newsreader',color: Colors.white)),
       chipTheme: ChipThemeData
       (
         backgroundColor: Color.fromRGBO(13,18,57,1),  //blu
@@ -65,7 +65,7 @@ ThemeData get_themes(int index)
         headline1: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold,color: Colors.black,fontFamily: 'ShipporiMincho'),
         headline6: TextStyle(fontSize: 20.0, color: Colors.black,fontFamily: 'ShipporiMincho',fontWeight: FontWeight.bold),
         headline4: TextStyle(fontSize: 22.0, color: Colors.black,fontWeight: FontWeight.bold),
-        bodyText2: TextStyle(fontSize: 15.0, fontFamily: 'Newsreader-Regular',color: Colors.black,)),
+        bodyText2: TextStyle(fontSize: 15.0, fontFamily: 'Newsreader',color: Colors.black,)),
       chipTheme: ChipThemeData
       (
         backgroundColor: Color.fromRGBO(0,0,0,1), // Nero,
@@ -100,7 +100,7 @@ ThemeData get_themes(int index)
         headline1: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold,color: Color.fromRGBO(233,193,33,1),fontFamily: 'ShipporiMincho'),
         headline6: TextStyle(fontSize: 20.0, color: Colors.black,fontFamily: 'ShipporiMincho',fontWeight: FontWeight.bold),
         headline4: TextStyle(fontSize: 22.0, color: Colors.white,fontWeight: FontWeight.bold),
-        bodyText2: TextStyle(fontSize: 15.0, fontFamily: 'Newsreader-Regular',color: Colors.black)),
+        bodyText2: TextStyle(fontSize: 15.0, fontFamily: 'Newsreader',color: Colors.black)),
       chipTheme: ChipThemeData
       (
         backgroundColor: Color.fromRGBO(233,193,33,1), // SENAPE,

@@ -13,9 +13,9 @@ import 'package:toggle_switch/toggle_switch.dart';
 
 
 
- StreamController<String> stc1 = StreamController<String>.broadcast();
- StreamController<String> stc2 = StreamController<String>.broadcast();
- StreamController<String> stc3 = StreamController<String>.broadcast();
+ StreamController<String> stc1 = StreamController<String>.broadcast();      //STREAM PER CATEGORIA
+ StreamController<String> stc2 = StreamController<String>.broadcast();      //STREAM PER RICERCA PAROLA
+ StreamController<String> stc3 = StreamController<String>.broadcast();      //STREAM PER IL TOGGLE SWITCH 
 
  
 
@@ -29,19 +29,19 @@ class Homepage extends StatefulWidget {
 }
 
 class Homepage1 extends State<Homepage> {
- static List<ArticleModel> articles = [];
-  List<CatMod> categorie = [];
-  static bool loading = true;
-  final GlobalKey<ScaffoldState> _scaffoldKey= GlobalKey<ScaffoldState>();
-  TextEditingController _textController;
+ static List<ArticleModel> articles = [];                           // LISTA DEGLI ARTICOLI
+  List<CatMod> categorie = [];                                      // LISTA DELLE CATEGORIE
+  static bool loading = true;                                       // BOOL PER IL CARICAMENTO
+  final GlobalKey<ScaffoldState> _scaffoldKey= GlobalKey<ScaffoldState>();  //CHIAVE CHE USO PER APRIRE IL DRAWER
+  TextEditingController _textController;                                    //TEXTCONTROLLER PER LA CUPERTINOSEARCHTEXTFIELD
   
 
-    String a=null;
-    String c=null;
+    String a=null;  //GUARDA I COMMENTI IN NEWS.DART PER CAPIRE COSA SONO
+    String c=null;                            
     String l=null;
     String q=null;
-    
-     int toggle = 2;
+
+     int toggle = 2;    // IL TOGGLE INIZIALMENTE è SEMPRE SU DUE OVVERO TUTTO PER FAR CAPIRE CHE SARANNO VISTI TUTTI GLI ARTICOLI SENZA DISTINZIONE POLITICA
 
 
 
@@ -56,9 +56,9 @@ class Homepage1 extends State<Homepage> {
 
      
 
-    widget.stream1.listen((tipo1) {Stato(); getNews(tipo1,l,q,a); });
-    widget.stream2.listen((q) {Stato(); getNews("",l,q,a); });
-    widget.stream3.listen((a) {Stato();getNews(c, l, q, a);});
+    widget.stream1.listen((tipo1) {Stato(); getNews(tipo1,l,q,a); });               // ARRIVA IL DATO CATEGORIA
+    widget.stream2.listen((q) {Stato(); getNews("",l,q,a); });                      // ARRIVA IL DATO PAROLA CERCATA
+    widget.stream3.listen((a) {Stato();getNews(c, l, q, a);});                      // ARRIVA INDICE DEL TOGGLE SWITCH 
   }
 
   
@@ -66,7 +66,7 @@ class Homepage1 extends State<Homepage> {
   void Stato()
   {
     setState(() {
-      loading = true;
+      loading = true;                                                               // SE E' TRUE VERRA' FATTO UN DISPLAY DI CARICAMENTO 
     });
   }
 
@@ -74,12 +74,12 @@ class Homepage1 extends State<Homepage> {
   
 
 
-  getNews(c,l,q,a) async {
-    News NuovaNews = News();
-    await NuovaNews.getNews(c,l,q,a);
-    articles = NuovaNews.news;
+  getNews(c,l,q,a) async {                                                          // METODO GETNEWS PRESENTE IN NEWS.DART 
+    News NuovaNews = News();                                                        // CREO CLASSE NUOVANEWS 
+    await NuovaNews.getNews(c,l,q,a);                                               // RICHIAMO IL METODO E ASPETTO CHE SI COMPLETI
+    articles = NuovaNews.news;                                                      // OGNI ARTICOLO ORA è ASSEGNATO ALLA LISTA 
     setState(() {
-      loading = false;
+      loading = false;                                                              // DUNQUE DIRO' AL BOOL DI ESSERE FALSO ED ELIMINARE LA CIRUCULAR PROGRESSION
     });
   }
 
@@ -87,7 +87,7 @@ class Homepage1 extends State<Homepage> {
 
 
   void _openEndDrawer() {
-    _scaffoldKey.currentState.openEndDrawer();
+    _scaffoldKey.currentState.openEndDrawer();                                      // PER APRIRE IL DRAWER
   }
 
   Widget build(BuildContext) {
@@ -97,19 +97,21 @@ class Homepage1 extends State<Homepage> {
    
             //-------------------------------APPBAR CON SEARCH BAR----------------------------------------------//   
 
-    return GestureDetector(
-      onTap: () {
+    return GestureDetector(                                               // TUTTA LA MIA HOMEPAGE E' RACCHIUSA IN GESTURE DETECTOR PER CHIUDERE
+      onTap: () {                                                         // LA CUPERTINOSEARCHTEXTFIELD SE CLICCO OVUNQUE AL DI FUORI DI ESSA
         FocusScopeNode currentFocus = FocusScope.of(context);
 
         if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
+          currentFocus.unfocus();                                         // PER PERMETTERE L'UNFOCUS
         }
       },
       child: Scaffold(
-      key: _scaffoldKey,
-      resizeToAvoidBottomInset: true,
-      backgroundColor: Theme.of(context).primaryColor,
-      appBar: AppBar
+      key: _scaffoldKey,                                                  // NECESSARIA PER IL DRAWER
+      resizeToAvoidBottomInset: true,                                     // PER EVITARE GLITCH CON LA TASTIERA
+      backgroundColor: Theme.of(context).primaryColor,                    // ISTRUZIONE LEGATA AI TEMI
+
+      // L'APP BAR CONTERRA' LA CUPERTINOSEARCHTEXTFIELD E ICONA PER APRIRE IL DRAWER
+      appBar: AppBar                                          
       (
         
         backgroundColor: Colors.transparent,
@@ -199,23 +201,24 @@ class Homepage1 extends State<Homepage> {
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
             ),
-            child: Text(
+            child: Text(                                                                // TESTO AL DI SOPRA DEL DRAWER
               'Political Balance News',
               style: Theme.of(context).textTheme.headline1 
             ),
           )),
 
 
+        // LIST TILE (NE SONO 2) PER DEFINIRE CHE FARE UNA VOLTA APERTO IL DRAWER
         ListTile
         (
           leading: Icon(Icons.info,color: Theme.of(context).primaryColor),
-          title: Text('Informazioni app',style: TextStyle(color: Theme.of(context).primaryColor),),
+          title: Text('Informazioni app',style: TextStyle(color: Theme.of(context).primaryColor),),           
           onTap: ()
           {
             Navigator.push
             (
               context,
-              MaterialPageRoute(builder: (context)=>informazioni()) 
+              MaterialPageRoute(builder: (context)=>informazioni())                     // VA ALLA SCHERMATA INFORMAZIONI
             );
           },
           
@@ -231,7 +234,7 @@ class Homepage1 extends State<Homepage> {
             Navigator.push
             (
               context,
-              MaterialPageRoute(builder: (context)=>tema()) 
+              MaterialPageRoute(builder: (context)=>tema())                             // VA NELLA PAGINA PER CAMBIARE I TEMI
             );
           },
         ),
@@ -251,7 +254,7 @@ class Homepage1 extends State<Homepage> {
       body: loading
           ? Center(
               child: Container(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(),                                               // SCHERMATA DI CARICAMENTO
               ),
             )
 
@@ -267,17 +270,16 @@ class Homepage1 extends State<Homepage> {
             initialLabelIndex: toggle,
             totalSwitches: 4,
             inactiveBgColor: Theme.of(context).primaryColor,
-            activeBgColor: [Theme.of(context).accentColor],
+            activeBgColor: [Theme.of(context).accentColor],                                 // TOGGLE SWITCH 
             inactiveFgColor: Theme.of(context).accentColor,
             labels: ['Sinistra', 'Centro','Tutto', 'Destra'],
             onToggle: (index) {
              
             toggle = index;
-            print('Sono index $index.toString()');
             a=index.toString();
-            stc3.add(a);
-
-          },
+            stc3.add(a);                                                                    // UTILIZZO DELLO STREAM C'E' UN CAST PER MOTIVI LEGATI A COMPLESSITA' DI CODICE
+                                                                                            // DA QUESTO COMMENTO IN POI C'E' SOLO GRAFICA ED UNA CLASSE SEMPRE PER MOTIVI GRAFICI
+          },                                                                                // PER CUI IL CODICE E' AUTO ESPLICATIVO DATO LE PREMESSE FATTE NEI COMMENTI
           ),),
 
 
