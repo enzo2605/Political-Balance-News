@@ -59,7 +59,7 @@ class info extends State<informazioni> {
           child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
               
-                child: Image.network('https://www.allsides.com/sites/default/files/AllSidesMediaBiasChart-Version4.1.jpg'))),
+                child: Image.asset('images/schieramento.png'))),
           Container(
                     padding: EdgeInsets.only(left: 15,right: 15),
 
@@ -68,7 +68,7 @@ class info extends State<informazioni> {
                       text: TextSpan(
                         
                         text: "L' applicazione Political Balance news riprende comportamenti d'oltre oceano e d'oltre manica per la classificazione dello spettro politico dei giornali, lo scopo dunque è indirizzato nell' instaurare nel lettore una giusta distinzione e apertura mentale per quanto concerne al ragionamento di diversi articoli riguardanti lo stesso argomento ",
-                        style: Theme.of(context).textTheme.bodyText2
+                        style: Theme.of(context).textTheme.bodyText1
 
                       ),
 
