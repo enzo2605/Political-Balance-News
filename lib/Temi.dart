@@ -97,6 +97,7 @@ class temi extends State<tema> {
         backgroundColor: Theme.of(context).primaryColor,
         body: Column(
           children: <Widget>[
+            
             Padding(
                 padding: EdgeInsets.only(
                     left: 15,

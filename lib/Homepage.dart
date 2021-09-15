@@ -6,10 +6,14 @@ import 'package:political_balance_news/Categorie.dart';
 import 'package:political_balance_news/Data.dart';
 import 'package:political_balance_news/News.dart';
 import 'package:political_balance_news/info.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
 import 'News.dart';
 import 'Animazione.dart';
 import 'Temi.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'Api_Key.dart';
 
 StreamController<String> stc1 = StreamController<String>.broadcast();           //STREAM PER CATEGORIA
 StreamController<String> stc2 = StreamController<String>.broadcast();           //STREAM PER RICERCA PAROLA
@@ -59,24 +63,56 @@ class Homepage1 extends State<Homepage> {
       getNews(c, l, q, a);
     });                                                                         // ARRIVA INDICE DEL TOGGLE SWITCH
   }
-
+String key1 ,link="https://newsapi.org/register" ;
   void Stato() {
     setState(() {
-      loading = true;                                                           // SE E' TRUE VERRA' FATTO UN DISPLAY DI CARICAMENTO
+      loading = true;
+      key1= "inizio";                                                           // SE E' TRUE VERRA' FATTO UN DISPLAY DI CARICAMENTO
     });
   }
-
+  
   getNews(c, l, q, a) async {
                                                                                 // METODO GETNEWS PRESENTE IN NEWS.DART
-    News NuovaNews = News();                                                    // CREO CLASSE NUOVANEWS
+    News NuovaNews = News();  
+
+    api API = api();
+    API.scrivi("Male");
+     key1 = await API.leggi();
+    print("prontooo "+key1);
+     
+                                                                                // CREO CLASSE NUOVANEWS
     await NuovaNews.getNews(
         c, l, q, a);                                                            // RICHIAMO IL METODO E ASPETTO CHE SI COMPLETI
-    articles = NuovaNews.news;                                                  // OGNI ARTICOLO ORA è ASSEGNATO ALLA LISTA
+    articles = NuovaNews.news;
+
+    if(key1=="Male")
     setState(() {
-      loading = false;
+      
+      key1 = "Male";
                                                                                 // DUNQUE DIRO' AL BOOL DI ESSERE FALSO ED ELIMINARE LA CIRUCULAR PROGRESSION
     });
+    
+    else                                                            // OGNI ARTICOLO ORA è ASSEGNATO ALLA LISTA
+    setState(() {
+      
+      loading = false;
+      key1 ="";
+                                                                                // DUNQUE DIRO' AL BOOL DI ESSERE FALSO ED ELIMINARE LA CIRUCULAR PROGRESSION
+    });
+
+    
   }
+
+_launchURL() async {
+  const url = 'https://newsapi.org/register';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+  
+  
 
   void _openEndDrawer() {
     _scaffoldKey.currentState.openEndDrawer();                                  // PER APRIRE IL DRAWER
@@ -206,14 +242,38 @@ class Homepage1 extends State<Homepage> {
 
         //-----------------------BODY-------------------------------------//
         body: loading
-            ? Center(
+            ? 
+            Stack(
+              
+            children: 
+            [
+              if(key1=="Male")
+              AlertDialog
+              (
+                title: Text("Frate abbiamo un problema !",style: TextStyle(color: Colors.black),),
+                content: Text("Sembra tu non abbia una key !",style: TextStyle(color: Colors.black),),
+                actions: 
+                [
+                  TextButton
+                  (
+                    onPressed: _launchURL,
+                    child: Text("Ottieni una Key adesso !")
+                  )
+                ],
+              ),
+
+
+            if(key1!="Male")
+            Center(
                 child: Container(
                   child: CircularProgressIndicator(
                     color: Theme.of(context).colorScheme.secondary,
                   ), // SCHERMATA DI CARICAMENTO
                 ),
               )
+            ])
             : Stack(children: <Widget>[
+              
                 Container(
                   alignment: Alignment.topCenter,
                   child: ToggleSwitch(
@@ -228,12 +288,13 @@ class Homepage1 extends State<Homepage> {
                     onToggle: (index) {
                       toggle = index;
                       a = index.toString();
-                      stc3.add(
-                          a);                                                   // UTILIZZO DELLO STREAM C'E' UN CAST PER MOTIVI LEGATI A COMPLESSITA' DI CODICE
+                      stc3.add(a);                                              // UTILIZZO DELLO STREAM C'E' UN CAST PER MOTIVI LEGATI A COMPLESSITA' DI CODICE
                                                                                 // DA QUESTO COMMENTO IN POI C'E' SOLO GRAFICA ED UNA CLASSE SEMPRE PER MOTIVI GRAFICI
                     },                                                          // PER CUI IL CODICE E' AUTO ESPLICATIVO DATO LE PREMESSE FATTE NEI COMMENTI
                   ),
                 ),
+
+                
 
                 //-----------------------CATEGORIE-------------------------------------//
                 Container(

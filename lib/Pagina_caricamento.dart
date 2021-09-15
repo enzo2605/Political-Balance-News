@@ -33,6 +33,7 @@ class Pagina_caricamento extends State<Pci> {
       (
         children: <Widget>
       [
+        
         Align(
             alignment: Alignment(0.0, 0.0),
             child: Image.asset('images/weight_scale_black_bg.png',fit: BoxFit.cover,)),
