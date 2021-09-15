@@ -181,7 +181,7 @@ class temi extends State<tema> {
                             '0'); // Scrive nel file relativo che indice di tema
                         st.add(0); // Aggiunge l'indice allo stream del main
 
-                        snacks().snack(context); //SNACKBAR
+                      
                       },
                     ),
                     //-------------- PRIMO TEMA--------------//
@@ -203,7 +203,7 @@ class temi extends State<tema> {
                               '1'); // Scrive nel file relativo che indice di tema
                           st.add(1); // Aggiunge l'indice allo stream del main
 
-                          snacks().snack(context); //SNACKBAR
+                        
                         }),
                     //-------------- SECONDO TEMA--------------//
 
@@ -224,7 +224,7 @@ class temi extends State<tema> {
                               '2'); // Scrive nel file relativo che indice di tema
                           st.add(2); // Aggiunge l'indice allo stream del main
 
-                          snacks().snack(context); //SNACKBAR
+                        
                         }),
 
                     //-------------- TERZO TEMA--------------//
