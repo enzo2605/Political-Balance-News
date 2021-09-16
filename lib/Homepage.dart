@@ -257,8 +257,10 @@ _launchURL() async {
                   TextButton
                   (
                     onPressed: _launchURL,
-                    child: Text("Ottieni una Key adesso !")
-                  )
+                    child: Text("Ottieni una Key adesso !",style: TextStyle(color: Colors.black),)
+                  ),
+                  Text("inserisci chiave",style: TextStyle(color: Colors.black),),
+                  TextField(),
                 ],
               ),
 
