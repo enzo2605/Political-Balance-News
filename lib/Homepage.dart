@@ -34,7 +34,7 @@ class Homepage1 extends State<Homepage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();     //CHIAVE CHE USO PER APRIRE IL DRAWER
                                                      
   TextEditingController _textController;                                        //TEXTCONTROLLER PER LA CUPERTINOSEARCHTEXTFIELD
-                                                                
+  TextEditingController keytextfield;                                                                
 
   String a = null;                                                              //GUARDA I COMMENTI IN NEWS.DART PER CAPIRE COSA SONO
   String c = null;
@@ -257,10 +257,17 @@ _launchURL() async {
                   TextButton
                   (
                     onPressed: _launchURL,
-                    child: Text("Ottieni una Key adesso !",style: TextStyle(color: Colors.black),)
+                    child: Text("Ottieni una Key adesso !",style: TextStyle(color: Colors.blue.shade500),)
                   ),
-                  Text("inserisci chiave",style: TextStyle(color: Colors.black),),
-                  TextField(),
+                  Align
+                  (
+                    alignment: Alignment.bottomLeft, 
+                    child: Text("\nInserisci chiave",style: TextStyle(color: Colors.black),),),
+                  TextField
+                  (
+                    style: TextStyle(color: Colors.black),
+                    controller: keytextfield,
+                  ),
                 ],
               ),
 
