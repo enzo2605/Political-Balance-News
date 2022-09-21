@@ -15,10 +15,12 @@ import 'Temi.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'Api_Key.dart';
 
-StreamController<String> stc1 = StreamController<String>.broadcast();           //STREAM PER CATEGORIA
-StreamController<String> stc2 = StreamController<String>.broadcast();           //STREAM PER RICERCA PAROLA
-StreamController<String> stc3 = StreamController<String>.broadcast();           //STREAM PER IL TOGGLE SWITCH                        
-                                          
+StreamController<String> stc1 =
+    StreamController<String>.broadcast(); //STREAM PER CATEGORIA
+StreamController<String> stc2 =
+    StreamController<String>.broadcast(); //STREAM PER RICERCA PAROLA
+StreamController<String> stc3 =
+    StreamController<String>.broadcast(); //STREAM PER IL TOGGLE SWITCH
 
 class Homepage extends StatefulWidget {
   Homepage1 createState() => Homepage1();
@@ -28,20 +30,23 @@ class Homepage extends StatefulWidget {
 }
 
 class Homepage1 extends State<Homepage> {
-  static List<ArticleModel> articles = [];                                      // LISTA DEGLI ARTICOLI
-  List<CatMod> categorie = [];                                                  // LISTA DELLE CATEGORIE
-  static bool loading = true;                                                   // BOOL PER IL CARICAMENTO
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();     //CHIAVE CHE USO PER APRIRE IL DRAWER
-                                                     
-  TextEditingController _textController;                                        //TEXTCONTROLLER PER LA CUPERTINOSEARCHTEXTFIELD
-  TextEditingController keytextfield;                                                                
+  static List<ArticleModel> articles = []; // LISTA DEGLI ARTICOLI
+  List<CatMod> categorie = []; // LISTA DELLE CATEGORIE
+  static bool loading = true; // BOOL PER IL CARICAMENTO
+  final GlobalKey<ScaffoldState> _scaffoldKey =
+      GlobalKey<ScaffoldState>(); //CHIAVE CHE USO PER APRIRE IL DRAWER
 
-  String a = null;                                                              //GUARDA I COMMENTI IN NEWS.DART PER CAPIRE COSA SONO
+  TextEditingController
+      _textController; //TEXTCONTROLLER PER LA CUPERTINOSEARCHTEXTFIELD
+  TextEditingController keytextfield;
+
+  String a = null; //GUARDA I COMMENTI IN NEWS.DART PER CAPIRE COSA SONO
   String c = null;
   String l = null;
   String q = null;
 
-  int toggle = 2;                                                                // IL TOGGLE INIZIALMENTE è SEMPRE SU DUE OVVERO TUTTO PER FAR CAPIRE CHE SARANNO VISTI TUTTI GLI ARTICOLI SENZA DISTINZIONE POLITICA
+  int toggle =
+      2; // IL TOGGLE INIZIALMENTE è SEMPRE SU DUE OVVERO TUTTO PER FAR CAPIRE CHE SARANNO VISTI TUTTI GLI ARTICOLI SENZA DISTINZIONE POLITICA
 
   void initState() {
     super.initState();
@@ -53,69 +58,63 @@ class Homepage1 extends State<Homepage> {
     widget.stream1.listen((tipo1) {
       Stato();
       getNews(tipo1, l, q, a);
-    });                                                                         // ARRIVA IL DATO CATEGORIA
+    }); // ARRIVA IL DATO CATEGORIA
     widget.stream2.listen((q) {
       Stato();
       getNews("", l, q, a);
-    });                                                                         // ARRIVA IL DATO PAROLA CERCATA
+    }); // ARRIVA IL DATO PAROLA CERCATA
     widget.stream3.listen((a) {
       Stato();
       getNews(c, l, q, a);
-    });                                                                         // ARRIVA INDICE DEL TOGGLE SWITCH
+    }); // ARRIVA INDICE DEL TOGGLE SWITCH
   }
-String key1 ,link="https://newsapi.org/register" ;
+
+  String key1, link = "https://newsapi.org/register";
   void Stato() {
     setState(() {
       loading = true;
-      key1= "inizio";                                                           // SE E' TRUE VERRA' FATTO UN DISPLAY DI CARICAMENTO
+      key1 = "inizio"; // SE E' TRUE VERRA' FATTO UN DISPLAY DI CARICAMENTO
     });
   }
-  
+
   getNews(c, l, q, a) async {
-                                                                                // METODO GETNEWS PRESENTE IN NEWS.DART
-    News NuovaNews = News();  
+    // METODO GETNEWS PRESENTE IN NEWS.DART
+    News NuovaNews = News();
 
     api API = api();
-    API.scrivi("Male");
-     key1 = await API.leggi();
-    print("prontooo "+key1);
-     
-                                                                                // CREO CLASSE NUOVANEWS
+    API.scrivi("YOUR_API_KEY");
+    key1 = await API.leggi();
+    print("prontooo " + key1);
+
+    // CREO CLASSE NUOVANEWS
     await NuovaNews.getNews(
-        c, l, q, a);                                                            // RICHIAMO IL METODO E ASPETTO CHE SI COMPLETI
+        c, l, q, a); // RICHIAMO IL METODO E ASPETTO CHE SI COMPLETI
     articles = NuovaNews.news;
 
-    if(key1=="Male")
-    setState(() {
-      
-      key1 = "Male";
-                                                                                // DUNQUE DIRO' AL BOOL DI ESSERE FALSO ED ELIMINARE LA CIRUCULAR PROGRESSION
-    });
-    
-    else                                                            // OGNI ARTICOLO ORA è ASSEGNATO ALLA LISTA
-    setState(() {
-      
-      loading = false;
-      key1 ="";
-                                                                                // DUNQUE DIRO' AL BOOL DI ESSERE FALSO ED ELIMINARE LA CIRUCULAR PROGRESSION
-    });
-
-    
+    if (key1 == "Male")
+      setState(() {
+        key1 = "Male";
+        // DUNQUE DIRO' AL BOOL DI ESSERE FALSO ED ELIMINARE LA CIRUCULAR PROGRESSION
+      });
+    else // OGNI ARTICOLO ORA è ASSEGNATO ALLA LISTA
+      setState(() {
+        loading = false;
+        key1 = "";
+        // DUNQUE DIRO' AL BOOL DI ESSERE FALSO ED ELIMINARE LA CIRUCULAR PROGRESSION
+      });
   }
 
-_launchURL() async {
-  const url = 'https://newsapi.org/register';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  _launchURL() async {
+    const url = 'https://newsapi.org/register';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
-  
-  
 
   void _openEndDrawer() {
-    _scaffoldKey.currentState.openEndDrawer();                                  // PER APRIRE IL DRAWER
+    _scaffoldKey.currentState.openEndDrawer(); // PER APRIRE IL DRAWER
   }
 
   Widget build(BuildContext) {
@@ -128,14 +127,14 @@ _launchURL() async {
         FocusScopeNode currentFocus = FocusScope.of(context);
 
         if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();                                               // PER PERMETTERE L'UNFOCUS
+          currentFocus.unfocus(); // PER PERMETTERE L'UNFOCUS
         }
       },
       child: Scaffold(
-        key: _scaffoldKey,                                                      // NECESSARIA PER IL DRAWER
-        resizeToAvoidBottomInset: true,                                         // PER EVITARE GLITCH CON LA TASTIERA
+        key: _scaffoldKey, // NECESSARIA PER IL DRAWER
+        resizeToAvoidBottomInset: true, // PER EVITARE GLITCH CON LA TASTIERA
         backgroundColor:
-            Theme.of(context).colorScheme.primary,                              // ISTRUZIONE LEGATA AI TEMI
+            Theme.of(context).colorScheme.primary, // ISTRUZIONE LEGATA AI TEMI
 
         // L'APP BAR CONTERRA' LA CUPERTINOSEARCHTEXTFIELD E ICONA PER APRIRE IL DRAWER
         appBar: AppBar(
@@ -242,47 +241,47 @@ _launchURL() async {
 
         //-----------------------BODY-------------------------------------//
         body: loading
-            ? 
-            Stack(
-              
-            children: 
-            [
-              if(key1=="Male")
-              AlertDialog
-              (
-                title: Text("Frate abbiamo un problema !",style: TextStyle(color: Colors.black),),
-                content: Text("Sembra tu non abbia una key !",style: TextStyle(color: Colors.black),),
-                actions: 
-                [
-                  TextButton
-                  (
-                    onPressed: _launchURL,
-                    child: Text("Ottieni una Key adesso !",style: TextStyle(color: Colors.blue.shade500),)
+            ? Stack(children: [
+                if (key1 == "Male")
+                  AlertDialog(
+                    title: Text(
+                      "Frate abbiamo un problema !",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    content: Text(
+                      "Sembra tu non abbia una key !",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    actions: [
+                      TextButton(
+                          onPressed: _launchURL,
+                          child: Text(
+                            "Ottieni una Key adesso !",
+                            style: TextStyle(color: Colors.blue.shade500),
+                          )),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          "\nInserisci chiave",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                      TextField(
+                        style: TextStyle(color: Colors.black),
+                        controller: keytextfield,
+                      ),
+                    ],
                   ),
-                  Align
-                  (
-                    alignment: Alignment.bottomLeft, 
-                    child: Text("\nInserisci chiave",style: TextStyle(color: Colors.black),),),
-                  TextField
-                  (
-                    style: TextStyle(color: Colors.black),
-                    controller: keytextfield,
-                  ),
-                ],
-              ),
-
-
-            if(key1!="Male")
-            Center(
-                child: Container(
-                  child: CircularProgressIndicator(
-                    color: Theme.of(context).colorScheme.secondary,
-                  ), // SCHERMATA DI CARICAMENTO
-                ),
-              )
-            ])
+                if (key1 != "Male")
+                  Center(
+                    child: Container(
+                      child: CircularProgressIndicator(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ), // SCHERMATA DI CARICAMENTO
+                    ),
+                  )
+              ])
             : Stack(children: <Widget>[
-              
                 Container(
                   alignment: Alignment.topCenter,
                   child: ToggleSwitch(
@@ -297,13 +296,12 @@ _launchURL() async {
                     onToggle: (index) {
                       toggle = index;
                       a = index.toString();
-                      stc3.add(a);                                              // UTILIZZO DELLO STREAM C'E' UN CAST PER MOTIVI LEGATI A COMPLESSITA' DI CODICE
-                                                                                // DA QUESTO COMMENTO IN POI C'E' SOLO GRAFICA ED UNA CLASSE SEMPRE PER MOTIVI GRAFICI
-                    },                                                          // PER CUI IL CODICE E' AUTO ESPLICATIVO DATO LE PREMESSE FATTE NEI COMMENTI
+                      stc3.add(
+                          a); // UTILIZZO DELLO STREAM C'E' UN CAST PER MOTIVI LEGATI A COMPLESSITA' DI CODICE
+                      // DA QUESTO COMMENTO IN POI C'E' SOLO GRAFICA ED UNA CLASSE SEMPRE PER MOTIVI GRAFICI
+                    }, // PER CUI IL CODICE E' AUTO ESPLICATIVO DATO LE PREMESSE FATTE NEI COMMENTI
                   ),
                 ),
-
-                
 
                 //-----------------------CATEGORIE-------------------------------------//
                 Container(
