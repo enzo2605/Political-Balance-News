@@ -1,16 +1,7 @@
 # political_balance_news
 
-A new Flutter project.
+It's a Flutter Project for news, it splits news in three majors groups: RIGHT WING JOURNAL NEWS, CENTRIC WING JOURNAL NEWS, LEFT WING JOURNAL NEWS
 
-## Getting Started
+#IT IS ABANDONED
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I don't belive in it, it was for a Uni project i got the maximum mark possible ( 30 / 30 ), but now i have grown up, and my skills are improved, i see too much problems in it , so i left it here, it can be used to understand flutter his widgets, and what is flutter's potential
