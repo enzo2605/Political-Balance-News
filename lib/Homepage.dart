@@ -82,7 +82,7 @@ class Homepage1 extends State<Homepage> {
     News NuovaNews = News();
 
     api API = api();
-    API.scrivi("YOUR_API_KEY");
+    API.scrivi("b7cdbe8abcc0401bb2a2fc2f1dd84c1d");
     key1 = await API.leggi();
     print("prontooo " + key1);
 
